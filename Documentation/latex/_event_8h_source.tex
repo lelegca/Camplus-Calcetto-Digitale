@@ -1,0 +1,44 @@
+\doxysection{Event.\+h}
+\hypertarget{_event_8h_source}{}\label{_event_8h_source}\index{CamplusUI-\/TFT-\/Documentato/src/Event.h@{CamplusUI-\/TFT-\/Documentato/src/Event.h}}
+\mbox{\hyperlink{_event_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00003}00003\ \textcolor{preprocessor}{\#ifndef\ Event\_h}}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00004}00004\ \textcolor{preprocessor}{\#define\ Event\_h}}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00011}\mbox{\hyperlink{class_event}{00011}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_event}{Event}}\ }
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00016}\mbox{\hyperlink{class_event_a51aace7cc7ea01d63ec3ccb7724b589c}{00016}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_event_a51aace7cc7ea01d63ec3ccb7724b589c}{MAXIMUM\_LISTENERS}}\ =\ 5;\ \textcolor{comment}{//\ For\ memory\ reasons,\ there\ is\ a\ maximum\ available\ number\ of\ listeners\ per\ event.}}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00019}00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_event_a5a40dd4708297f7031e29b39e039ae10}{Event}}();}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_event_ab490e69cd31677a1269fdad16c4b68c9}{addListener}}(\textcolor{keywordtype}{void}\ (*listener)(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}}),\ \textcolor{keywordtype}{void}*\ arguments);}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_event_ab490e69cd31677a1269fdad16c4b68c9}{addListener}}(\textcolor{keywordtype}{void}\ (*listener)(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}}));}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_event_a5e7a76d79272c1147c3585445a830056}{removeListener}}(\textcolor{keywordtype}{void}\ (*listener)(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}}));}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_event_a16106974155bc103f33a8263e190b1b9}{raise}}();}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00034}00034\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00037}\mbox{\hyperlink{class_event_ae299d0ec4e03ed9023217f93d747aeb5}{00037}}\ \ \ \ \ \ \ \ \ void\ (*\mbox{\hyperlink{class_event_ae299d0ec4e03ed9023217f93d747aeb5}{listeners}}[\mbox{\hyperlink{class_event_a51aace7cc7ea01d63ec3ccb7724b589c}{MAXIMUM\_LISTENERS}}])\ (\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}});\ \textcolor{comment}{//\ An\ array\ of\ pointers\ to\ listener\ functions}}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00042}\mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{00042}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}}[\mbox{\hyperlink{class_event_a51aace7cc7ea01d63ec3ccb7724b589c}{MAXIMUM\_LISTENERS}}];\ \textcolor{comment}{//\ An\ array\ of\ void\ pointers\ to\ arguments\ of\ listener\ functions}}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00045}\mbox{\hyperlink{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}{00045}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}{lastListenerIndex}}\ =\ -\/1;\ \textcolor{comment}{//\ Index\ of\ the\ last\ listener\ subscribed\ to\ the\ event}}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00046}00046\ \};}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00054}\mbox{\hyperlink{class_large_event}{00054}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_large_event}{LargeEvent}}}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00055}00055\ \{}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00056}00056\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00059}00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_large_event_abb226d3e90de2543691eaf25543ce7c2}{LargeEvent}}();}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_large_event_a716735ec25283df66d50f5b5435519a2}{addListener}}(\textcolor{keywordtype}{void}\ (*listener)(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{class_large_event_ae7370eaccf4e9edc62f2afb782075db3}{args}}),\ \textcolor{keywordtype}{void}*\ arguments);}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_large_event_a716735ec25283df66d50f5b5435519a2}{addListener}}(\textcolor{keywordtype}{void}\ (*listener)(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{class_large_event_ae7370eaccf4e9edc62f2afb782075db3}{args}}));}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_large_event_a6dc0d16f5ff52505b6a88d6fa87894f3}{removeListener}}(\textcolor{keywordtype}{void}\ (*listener)(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{class_large_event_ae7370eaccf4e9edc62f2afb782075db3}{args}}));}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_large_event_a44ad5f733d0894a76237d2eafec41b47}{raise}}();}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00074}00074\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00078}\mbox{\hyperlink{class_large_event_a47f36234cb7eb688ad5a4832ea1bf25a}{00078}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_large_event_a47f36234cb7eb688ad5a4832ea1bf25a}{MAXIMUM\_LISTENERS}}\ =\ 10\ *\ \mbox{\hyperlink{class_event_a51aace7cc7ea01d63ec3ccb7724b589c}{Event::MAXIMUM\_LISTENERS}};\ \textcolor{comment}{//\ For\ memory\ reasons,\ there\ is\ a\ maximum\ available\ number\ of\ listeners\ per\ event.}}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00081}\mbox{\hyperlink{class_large_event_ac2f71818c3b5778380e07c003c5657aa}{00081}}\ \ \ \ \ \ \ \ \ void\ (*\mbox{\hyperlink{class_large_event_ac2f71818c3b5778380e07c003c5657aa}{listeners}}[\mbox{\hyperlink{class_large_event_a47f36234cb7eb688ad5a4832ea1bf25a}{MAXIMUM\_LISTENERS}}])\ (\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{class_large_event_ae7370eaccf4e9edc62f2afb782075db3}{args}});\ \textcolor{comment}{//\ An\ array\ of\ pointers\ to\ listener\ functions}}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00086}\mbox{\hyperlink{class_large_event_ae7370eaccf4e9edc62f2afb782075db3}{00086}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{class_large_event_ae7370eaccf4e9edc62f2afb782075db3}{args}}[\mbox{\hyperlink{class_large_event_a47f36234cb7eb688ad5a4832ea1bf25a}{MAXIMUM\_LISTENERS}}];\ \textcolor{comment}{//\ An\ array\ of\ void\ pointers\ to\ arguments\ of\ listener\ functions}}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00089}\mbox{\hyperlink{class_large_event_a9f83b28978964667315f5bca843c71c0}{00089}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_large_event_a9f83b28978964667315f5bca843c71c0}{lastListenerIndex}}\ =\ -\/1;\ \textcolor{comment}{//\ Index\ of\ the\ last\ listener\ subscribed\ to\ the\ event}}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00090}00090\ \};}
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_event_8h_source_l00092}00092\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

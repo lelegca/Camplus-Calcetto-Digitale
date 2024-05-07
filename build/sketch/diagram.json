@@ -1,0 +1,29 @@
+#line 1 "C:\\Users\\emanu\\OneDrive\\Documenti\\CamplusProgettoLibreriaTFTDebug1\\CamplusUI-TFT-Documentato\\diagram.json"
+{
+  "version": 1,
+  "author": "Camplus Torino Bernini",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": 163.8, "left": 217.2, "attrs": {} },
+    {
+      "type": "board-ili9341-cap-touch",
+      "id": "lcd1",
+      "top": -200.84,
+      "left": 278.02,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "lcd1:VCC", "mega:5V", "red", [ "v0" ] ],
+    [ "lcd1:GND", "mega:GND.1", "black", [ "v0" ] ],
+    [ "lcd1:CS", "mega:10", "green", [ "v0" ] ],
+    [ "lcd1:D/C", "mega:53", "green", [ "v0" ] ],
+    [ "lcd1:MOSI", "mega:51", "green", [ "v0" ] ],
+    [ "lcd1:SCK", "mega:52", "white", [ "v0" ] ],
+    [ "lcd1:MISO", "mega:50", "green", [ "v0" ] ],
+    [ "lcd1:SCL", "mega:21", "green", [ "v0" ] ],
+    [ "lcd1:SDA", "mega:20", "green", [ "v0" ] ],
+    [ "lcd1:RST", "mega:4", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}

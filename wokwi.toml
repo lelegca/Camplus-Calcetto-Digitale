@@ -1,0 +1,4 @@
+[wokwi]
+version=1
+firmware='build/CamplusUI-TFT-Documentato.ino.hex'
+elf='build/CamplusUI-TFT-Documentato.ino.elf'

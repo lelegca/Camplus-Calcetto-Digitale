@@ -1,0 +1,73 @@
+\doxysection{Event.\+cpp}
+\hypertarget{_event_8cpp_source}{}\label{_event_8cpp_source}\index{CamplusUI-\/TFT-\/Documentato/src/Event.cpp@{CamplusUI-\/TFT-\/Documentato/src/Event.cpp}}
+\mbox{\hyperlink{_event_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_event_8h}{Event.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00005}\mbox{\hyperlink{class_event_a5a40dd4708297f7031e29b39e039ae10}{00005}}\ \mbox{\hyperlink{class_event_a5a40dd4708297f7031e29b39e039ae10}{Event::Event}}()\ }
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00008}00008\ \}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00010}\mbox{\hyperlink{class_event_ab490e69cd31677a1269fdad16c4b68c9}{00010}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_event_ab490e69cd31677a1269fdad16c4b68c9}{Event::addListener}}(\textcolor{keywordtype}{void}\ (*listener)(\textcolor{keywordtype}{void}*\ args),\ \textcolor{keywordtype}{void}*\ arguments)}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00012}00012\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}{lastListenerIndex}}\ <\ \mbox{\hyperlink{class_event_a51aace7cc7ea01d63ec3ccb7724b589c}{MAXIMUM\_LISTENERS}}\ -\/\ 1)}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00013}00013\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00014}00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}{lastListenerIndex}}++;}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00015}00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_event_ae299d0ec4e03ed9023217f93d747aeb5}{Event::listeners}}[\mbox{\hyperlink{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}{lastListenerIndex}}]\ =\ listener;}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{Event::args}}[\mbox{\hyperlink{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}{lastListenerIndex}}]\ =\ arguments;}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00017}00017\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00019}00019\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Reached\ maximum\ number\ of\ listeners!\ Listener\ method\ will\ not\ be\ subscribed\ to\ event"{}});}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00021}00021\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00022}00022\ \}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00024}\mbox{\hyperlink{class_event_a0e986ee98b8d984c59edab8ad6b4a0e7}{00024}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_event_ab490e69cd31677a1269fdad16c4b68c9}{Event::addListener}}(\textcolor{keywordtype}{void}\ (*listener)(\textcolor{keywordtype}{void}*\ args))}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00025}00025\ \{}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}{lastListenerIndex}}\ <\ \mbox{\hyperlink{class_event_a51aace7cc7ea01d63ec3ccb7724b589c}{MAXIMUM\_LISTENERS}}\ -\/\ 1)}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00027}00027\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}{lastListenerIndex}}++;}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_event_ae299d0ec4e03ed9023217f93d747aeb5}{listeners}}[\mbox{\hyperlink{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}{lastListenerIndex}}]\ =\ listener;}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00030}00030\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00032}00032\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00033}00033\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Reached\ maximum\ number\ of\ listeners!\ Listener\ method\ will\ not\ be\ subscribed\ to\ event"{}});}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00035}00035\ \}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00037}\mbox{\hyperlink{class_event_a5e7a76d79272c1147c3585445a830056}{00037}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_event_a5e7a76d79272c1147c3585445a830056}{Event::removeListener}}(\textcolor{keywordtype}{void}\ (*listener)(\textcolor{keywordtype}{void}*\ args))\ }
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00038}00038\ \{}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00039}00039\ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{comment}{//\ \ Checks\ correspondence\ in\ every\ value\ of\ the\ array,\ so\ that\ listener\ duplicates\ (even\ if\ bad\ practice)\ can\ be\ found}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{keywordflow}{while}(i\ <=\ \mbox{\hyperlink{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}{lastListenerIndex}})}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00042}00042\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_event_ae299d0ec4e03ed9023217f93d747aeb5}{listeners}}[i]\ ==\ listener)}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Scales\ the\ array\ items\ after\ that\ one\ element\ has\ been\ popped,\ so\ that\ listeners\ are\ stored\ continously.}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ item\ corresponding\ to\ i\ will\ be\ replaced\ by\ the\ next\ one\ and\ so\ on\ until\ the\ end\ of\ the\ loop}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Last\ index\ is\ not\ considered\ in\ the\ loop\ as\ new\ lastIndex\ for\ array\ will\ always\ be\ lastIndex\ -\/\ 1\ (one\ element\ has\ been\ popped),\ so\ last\ element\ will\ always\ be\ excluded}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=i;\ j\ <\ \mbox{\hyperlink{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}{lastListenerIndex}};\ j++)}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_event_ae299d0ec4e03ed9023217f93d747aeb5}{listeners}}[j]\ =\ \mbox{\hyperlink{class_event_ae299d0ec4e03ed9023217f93d747aeb5}{listeners}}[j+1];}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}}[j]\ =\ \mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}}[j+1];}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}{lastListenerIndex}}-\/-\/;\ \textcolor{comment}{//\ lastListenerIndex\ has\ ALWAYS\ to\ be\ decremented\ as\ one\ element\ is\ always\ popped\ out,\ thus\ all\ array\ is\ scaled\ by\ one\ and\ the\ index\ of\ last\ listener\ will\ be\ reduced}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ There\ is\ no\ need\ to\ increase\ i\ as\ the\ next\ element\ to\ be\ checked\ is\ already\ in\ position\ i\ as\ the\ array\ is\ scaled\ by\ one\ starting\ by\ i\ (listeners[i]\ =\ listeners[i+1]\ in\ first\ inner\ cycle\ execution)}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{\ i++;\ \}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00058}00058\ \}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00060}\mbox{\hyperlink{class_event_a16106974155bc103f33a8263e190b1b9}{00060}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_event_a16106974155bc103f33a8263e190b1b9}{Event::raise}}()\ }
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00061}00061\ \{}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00062}00062\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Raising\ all\ events..."{}});}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i\ <=\ \mbox{\hyperlink{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}{lastListenerIndex}};\ i++)}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00064}00064\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{class_event_ae299d0ec4e03ed9023217f93d747aeb5}{listeners}}[i])(\mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}}[i]);}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00066}00066\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_event_8cpp_source_l00067}00067\ \}}
+
+\end{DoxyCode}

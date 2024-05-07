@@ -1,0 +1,198 @@
+\doxysection{Event Class Reference}
+\hypertarget{class_event}{}\label{class_event}\index{Event@{Event}}
+
+
+{\ttfamily \#include $<$Event.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_event_a5a40dd4708297f7031e29b39e039ae10}{Event}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_event}{Event} constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_event_ab490e69cd31677a1269fdad16c4b68c9}{add\+Listener}} (void(\texorpdfstring{$\ast$}{*}listener)(void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}}), void \texorpdfstring{$\ast$}{*}arguments)
+\begin{DoxyCompactList}\small\item\em Subscribes a listener void function to the event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_event_a0e986ee98b8d984c59edab8ad6b4a0e7}{add\+Listener}} (void(\texorpdfstring{$\ast$}{*}listener)(void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}}))
+\begin{DoxyCompactList}\small\item\em Subscribes a listener void function to the event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_event_a5e7a76d79272c1147c3585445a830056}{remove\+Listener}} (void(\texorpdfstring{$\ast$}{*}listener)(void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}}))
+\begin{DoxyCompactList}\small\item\em Removes a listener from the event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_event_a16106974155bc103f33a8263e190b1b9}{raise}} ()
+\begin{DoxyCompactList}\small\item\em Raises the event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const int \mbox{\hyperlink{class_event_a51aace7cc7ea01d63ec3ccb7724b589c}{MAXIMUM\+\_\+\+LISTENERS}} = 5
+\begin{DoxyCompactList}\small\item\em Declares the maximum amount of listeners subscribable to the event. Unless it is really necessary, this value should be low to avoid memory problems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_event_ae299d0ec4e03ed9023217f93d747aeb5}{listeners}} \mbox{[}\mbox{\hyperlink{class_event_a51aace7cc7ea01d63ec3ccb7724b589c}{MAXIMUM\+\_\+\+LISTENERS}}\mbox{]})(void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}})
+\begin{DoxyCompactList}\small\item\em The array of pointers to listener functions. The length of the array is degtermined by MAXIMUM\+\_\+\+LISTENERS constant. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}} \mbox{[}\mbox{\hyperlink{class_event_a51aace7cc7ea01d63ec3ccb7724b589c}{MAXIMUM\+\_\+\+LISTENERS}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The array storing arguments associated to each listener during subscription. Every function will be called with this argument. Argument should be in the form void\texorpdfstring{$\ast$}{*}, so that maximum abstraction of the argument is given Do note that casting class objects require the static-\/cast statement. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}{last\+Listener\+Index}} = -\/1
+\begin{DoxyCompactList}\small\item\em The index of the last stored listener. It is increased before storing a new listener, thus is initialized to -\/1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An event is an object which stores functions which are called when a class calls a raise. For memory limit reasons, only 5 listeners are subscribable, though this limit can be changed by modifying the hard-\/coded constant "{}\+MAXIMUM\+\_\+\+LISTENERS"{} Listener functions should always be void functions only accepting a void\texorpdfstring{$\ast$}{*} argument 
+
+Definition at line \mbox{\hyperlink{_event_8h_source_l00011}{11}} of file \mbox{\hyperlink{_event_8h_source}{Event.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_event_a5a40dd4708297f7031e29b39e039ae10}\label{class_event_a5a40dd4708297f7031e29b39e039ae10} 
+\index{Event@{Event}!Event@{Event}}
+\index{Event@{Event}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{Event()}{Event()}}
+{\footnotesize\ttfamily Event\+::\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxylink{class_event}{Event} constructor. 
+
+
+
+Definition at line \mbox{\hyperlink{_event_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{_event_8cpp_source}{Event.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_event_a0e986ee98b8d984c59edab8ad6b4a0e7}\label{class_event_a0e986ee98b8d984c59edab8ad6b4a0e7} 
+\index{Event@{Event}!addListener@{addListener}}
+\index{addListener@{addListener}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{addListener()}{addListener()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Event\+::add\+Listener (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*})(void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}})}]{listener }\end{DoxyParamCaption})}
+
+
+
+Subscribes a listener void function to the event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener} & Listener function \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_event_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{_event_8cpp_source}{Event.\+cpp}}.
+
+\Hypertarget{class_event_ab490e69cd31677a1269fdad16c4b68c9}\label{class_event_ab490e69cd31677a1269fdad16c4b68c9} 
+\index{Event@{Event}!addListener@{addListener}}
+\index{addListener@{addListener}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{addListener()}{addListener()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Event\+::add\+Listener (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*})(void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}})}]{listener,  }\item[{void \texorpdfstring{$\ast$}{*}}]{arguments }\end{DoxyParamCaption})}
+
+
+
+Subscribes a listener void function to the event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener} & Pointer to listener function \\
+\hline
+{\em arguments} & Void pointer representing call arguments of the listener function. The function will be called passing those arguments. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_event_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{_event_8cpp_source}{Event.\+cpp}}.
+
+\Hypertarget{class_event_a16106974155bc103f33a8263e190b1b9}\label{class_event_a16106974155bc103f33a8263e190b1b9} 
+\index{Event@{Event}!raise@{raise}}
+\index{raise@{raise}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{raise()}{raise()}}
+{\footnotesize\ttfamily void Event\+::raise (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Raises the event. 
+
+
+
+Definition at line \mbox{\hyperlink{_event_8cpp_source_l00060}{60}} of file \mbox{\hyperlink{_event_8cpp_source}{Event.\+cpp}}.
+
+\Hypertarget{class_event_a5e7a76d79272c1147c3585445a830056}\label{class_event_a5e7a76d79272c1147c3585445a830056} 
+\index{Event@{Event}!removeListener@{removeListener}}
+\index{removeListener@{removeListener}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{removeListener()}{removeListener()}}
+{\footnotesize\ttfamily void Event\+::remove\+Listener (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*})(void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}})}]{listener }\end{DoxyParamCaption})}
+
+
+
+Removes a listener from the event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listener} & Pointer to listener function to remove \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_event_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{_event_8cpp_source}{Event.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}\label{class_event_a6073b017e49d18bf1bd12fadfb2b3c16} 
+\index{Event@{Event}!args@{args}}
+\index{args@{args}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{args}{args}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} Event\+::args\mbox{[}\mbox{\hyperlink{class_event_a51aace7cc7ea01d63ec3ccb7724b589c}{MAXIMUM\+\_\+\+LISTENERS}}\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The array storing arguments associated to each listener during subscription. Every function will be called with this argument. Argument should be in the form void\texorpdfstring{$\ast$}{*}, so that maximum abstraction of the argument is given Do note that casting class objects require the static-\/cast statement. 
+
+
+
+Definition at line \mbox{\hyperlink{_event_8h_source_l00042}{42}} of file \mbox{\hyperlink{_event_8h_source}{Event.\+h}}.
+
+\Hypertarget{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6}\label{class_event_a4283bdb64a368cd1a4f9ac539c6e2be6} 
+\index{Event@{Event}!lastListenerIndex@{lastListenerIndex}}
+\index{lastListenerIndex@{lastListenerIndex}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{lastListenerIndex}{lastListenerIndex}}
+{\footnotesize\ttfamily int Event\+::last\+Listener\+Index = -\/1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The index of the last stored listener. It is increased before storing a new listener, thus is initialized to -\/1. 
+
+
+
+Definition at line \mbox{\hyperlink{_event_8h_source_l00045}{45}} of file \mbox{\hyperlink{_event_8h_source}{Event.\+h}}.
+
+\Hypertarget{class_event_ae299d0ec4e03ed9023217f93d747aeb5}\label{class_event_ae299d0ec4e03ed9023217f93d747aeb5} 
+\index{Event@{Event}!listeners@{listeners}}
+\index{listeners@{listeners}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{listeners}{listeners}}
+{\footnotesize\ttfamily void(\texorpdfstring{$\ast$}{*} Event\+::listeners\mbox{[}\mbox{\hyperlink{class_event_a51aace7cc7ea01d63ec3ccb7724b589c}{MAXIMUM\+\_\+\+LISTENERS}}\mbox{]})(void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_event_a6073b017e49d18bf1bd12fadfb2b3c16}{args}})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The array of pointers to listener functions. The length of the array is degtermined by MAXIMUM\+\_\+\+LISTENERS constant. 
+
+
+
+Definition at line \mbox{\hyperlink{_event_8h_source_l00037}{37}} of file \mbox{\hyperlink{_event_8h_source}{Event.\+h}}.
+
+\Hypertarget{class_event_a51aace7cc7ea01d63ec3ccb7724b589c}\label{class_event_a51aace7cc7ea01d63ec3ccb7724b589c} 
+\index{Event@{Event}!MAXIMUM\_LISTENERS@{MAXIMUM\_LISTENERS}}
+\index{MAXIMUM\_LISTENERS@{MAXIMUM\_LISTENERS}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{MAXIMUM\_LISTENERS}{MAXIMUM\_LISTENERS}}
+{\footnotesize\ttfamily const int Event\+::\+MAXIMUM\+\_\+\+LISTENERS = 5\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Declares the maximum amount of listeners subscribable to the event. Unless it is really necessary, this value should be low to avoid memory problems. 
+
+
+
+Definition at line \mbox{\hyperlink{_event_8h_source_l00016}{16}} of file \mbox{\hyperlink{_event_8h_source}{Event.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Camplus\+UI-\/\+TFT-\/\+Documentato/src/\mbox{\hyperlink{_event_8h}{Event.\+h}}\item 
+Camplus\+UI-\/\+TFT-\/\+Documentato/src/\mbox{\hyperlink{_event_8cpp}{Event.\+cpp}}\end{DoxyCompactItemize}

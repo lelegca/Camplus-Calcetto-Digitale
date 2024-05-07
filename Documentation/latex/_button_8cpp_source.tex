@@ -1,0 +1,142 @@
+\doxysection{Button.\+cpp}
+\hypertarget{_button_8cpp_source}{}\label{_button_8cpp_source}\index{CamplusUI-\/TFT-\/Documentato/src/Button.cpp@{CamplusUI-\/TFT-\/Documentato/src/Button.cpp}}
+\mbox{\hyperlink{_button_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_button_8h}{Button.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_container_8h}{Container.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00005}\mbox{\hyperlink{class_button_a3b36df1ae23c58aedb9e15a713159459}{00005}}\ \mbox{\hyperlink{class_button_a3b36df1ae23c58aedb9e15a713159459}{Button::Button}}()\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00007}00007\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Button\ constructor\ reached!"{}});}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00008}00008\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00010}\mbox{\hyperlink{class_button_a13885bbc23c27f4f2981ca85c4e4f884}{00010}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a13885bbc23c27f4f2981ca85c4e4f884}{Button::setX}}(\textcolor{keywordtype}{int}\ x)\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00012}00012\ \ \ \ \ \mbox{\hyperlink{class_button_a8a68db187584de62b0fb9492560429e7}{Button::X}}\ =\ x;}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{comment}{//container-\/>render-\/>raise();\ //DEBUG\ LINE}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00014}00014\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00016}\mbox{\hyperlink{class_button_a6bfb7ce41fe3bcd78c53dca4dc1d7d39}{00016}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a6bfb7ce41fe3bcd78c53dca4dc1d7d39}{Button::setY}}(\textcolor{keywordtype}{int}\ y)}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00017}00017\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{class_button_a7e9d36df60ea041070250eb303d41f0c}{Button::Y}}\ =\ y;}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00021}\mbox{\hyperlink{class_button_ae1b9fb6d675b102d1b849d5707367e5c}{00021}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_ae1b9fb6d675b102d1b849d5707367e5c}{Button::setWidth}}(\textcolor{keywordtype}{int}\ width)}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00022}00022\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00023}00023\ \ \ \ \ \mbox{\hyperlink{class_button_ac62cb7282f26344c8f32db72029b943b}{Button::Width}}\ =\ width;}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00024}00024\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00026}\mbox{\hyperlink{class_button_aab93803608e1e8724f03a5712a6673b8}{00026}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_aab93803608e1e8724f03a5712a6673b8}{Button::setHeight}}(\textcolor{keywordtype}{int}\ height)}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00027}00027\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00028}00028\ \ \ \ \ \mbox{\hyperlink{class_button_a1c1b2781143597c41a8a5b048b8935b1}{Button::Height}}\ =\ height;}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00029}00029\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00031}\mbox{\hyperlink{class_button_ac3784de8b308caf17738d7ceacc86737}{00031}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_ac3784de8b308caf17738d7ceacc86737}{Button::setColor}}(uint16\_t\ color)}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00032}00032\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00033}00033\ \ \ \ \ \mbox{\hyperlink{class_button_aaeb3ded3bef5aa582620370def52ab18}{Button::Color}}\ =\ color;}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00034}00034\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00036}\mbox{\hyperlink{class_button_aa1cdc1155fa842fdc41416d36b550f5c}{00036}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_aa1cdc1155fa842fdc41416d36b550f5c}{Button::setTextColor}}(uint16\_t\ color)}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00037}00037\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00038}00038\ \ \ \ \ \mbox{\hyperlink{class_button_a8be03ea0788bba9df2769be9ffd12dd9}{Button::textColor}}\ =\ color;}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00039}00039\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00041}\mbox{\hyperlink{class_button_a274e65e44450594a8f44e3b1431382ab}{00041}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a274e65e44450594a8f44e3b1431382ab}{Button::setTextSize}}(uint8\_t\ size)}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00042}00042\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00043}00043\ \ \ \ \ \mbox{\hyperlink{class_button_a65b7255334c9472a20115482ce497400}{Button::textSize}}\ =\ size;}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00044}00044\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00046}\mbox{\hyperlink{class_button_a19c3ec0175abcc4e5ea77ea4db32c80d}{00046}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a19c3ec0175abcc4e5ea77ea4db32c80d}{Button::setText}}(String\ text)}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00047}00047\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00048}00048\ \ \ \ \ \mbox{\hyperlink{class_button_ad5e050ee5c49a42732628fd8888c131c}{Button::text}}\ =\ \mbox{\hyperlink{class_button_ad5e050ee5c49a42732628fd8888c131c}{text}};}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00049}00049\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00051}\mbox{\hyperlink{class_button_a84031201f5ddddc0575b7bcea1cc6611}{00051}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a84031201f5ddddc0575b7bcea1cc6611}{Button::setShape}}(\mbox{\hyperlink{class_button_a5e2a90a8bb6227f5d4b3d3e7405657bc}{Shape}}\ buttonShape)}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00052}00052\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00053}00053\ \ \ \ \ \mbox{\hyperlink{class_button_a3bc5c7e06bf7e68060b659b500d354f4}{Button::buttonShape}}\ =\ \mbox{\hyperlink{class_button_a3bc5c7e06bf7e68060b659b500d354f4}{buttonShape}};}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00054}00054\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00056}00056\ \textcolor{comment}{//\ Triggered\ by\ render\ event.\ It\ redirects\ to\ the\ all\ subscribed\ buttons\ istances'\ render\ methods}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00057}\mbox{\hyperlink{class_button_a34c4936e99d818fa4d5dc056f8bde4e6}{00057}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a34c4936e99d818fa4d5dc056f8bde4e6}{Button::renderDelegate}}(\textcolor{keywordtype}{void}*\ args)\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00058}00058\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_button}{Button}}*\textcolor{keyword}{>}(args)-\/>\mbox{\hyperlink{class_button_add4daea65a908027aa5a1593305b9656}{render}}();}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00060}00060\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Render\ Method"{}});}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00064}00064\ \textcolor{comment}{//\ Appends\ the\ button\ to\ a\ container\ and\ raises\ a\ render\ event}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00065}\mbox{\hyperlink{class_button_a25a97b48db8d842425eece2fb64870f1}{00065}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a25a97b48db8d842425eece2fb64870f1}{Button::append}}(\mbox{\hyperlink{class_container}{Container}}*\ container)\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00066}00066\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00067}00067\ \ \ \ \ \mbox{\hyperlink{class_button_a6dc32269d45e7d836812edaea9b616cc}{Button::container}}\ =\ \mbox{\hyperlink{class_button_a6dc32269d45e7d836812edaea9b616cc}{container}};}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00068}00068\ \ \ \ \ \mbox{\hyperlink{class_button_a6dc32269d45e7d836812edaea9b616cc}{container}}-\/>\mbox{\hyperlink{class_container_a6a054ae9c11276f08619b57565d6a999}{render}}-\/>\mbox{\hyperlink{class_large_event_a716735ec25283df66d50f5b5435519a2}{addListener}}(\&\mbox{\hyperlink{class_button_a34c4936e99d818fa4d5dc056f8bde4e6}{renderDelegate}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00069}00069\ \ \ \ \ \mbox{\hyperlink{class_button_a6dc32269d45e7d836812edaea9b616cc}{container}}-\/>\mbox{\hyperlink{class_container_a6a054ae9c11276f08619b57565d6a999}{render}}-\/>\mbox{\hyperlink{class_large_event_a44ad5f733d0894a76237d2eafec41b47}{raise}}();}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00070}00070\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Hello\ World!"{}});}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00071}00071\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00073}\mbox{\hyperlink{class_button_a7b4c055d3b7dcb497af48fbd7144dae3}{00073}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a7b4c055d3b7dcb497af48fbd7144dae3}{Button::hide}}()\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00074}00074\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00075}00075\ \ \ \ \ \mbox{\hyperlink{class_button_aad82185689689b2af0cc5412cbf08755}{hidden}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00076}00076\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00078}\mbox{\hyperlink{class_button_aa78992f4b594f281aa3d9b05cb6760f6}{00078}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_aa78992f4b594f281aa3d9b05cb6760f6}{Button::show}}()}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00079}00079\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00080}00080\ \ \ \ \ \mbox{\hyperlink{class_button_aad82185689689b2af0cc5412cbf08755}{hidden}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00081}00081\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00083}00083\ \textcolor{comment}{//\ Updates\ the\ button\ by\ rendering\ it}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00084}\mbox{\hyperlink{class_button_add4daea65a908027aa5a1593305b9656}{00084}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_add4daea65a908027aa5a1593305b9656}{Button::render}}()}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00085}00085\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00086}00086\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Hello\ World!\ I'm\ in\ render\ method"{}});}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{class_button_aad82185689689b2af0cc5412cbf08755}{hidden}})\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00089}00089\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Creates\ base\ rectangle}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(\mbox{\hyperlink{class_button_a3bc5c7e06bf7e68060b659b500d354f4}{buttonShape}})\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_button_a5e2a90a8bb6227f5d4b3d3e7405657bca8d2670a0561137d035dbfd455aa3afb8}{Shape::Rectangular}}:}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_button_a6dc32269d45e7d836812edaea9b616cc}{container}}-\/>\mbox{\hyperlink{class_container_a2fe9ebaed159c6782fab5c758cb813a1}{myLCD}}-\/>fillRect(\mbox{\hyperlink{class_button_a8a68db187584de62b0fb9492560429e7}{X}},\ \mbox{\hyperlink{class_button_a7e9d36df60ea041070250eb303d41f0c}{Y}},\ \mbox{\hyperlink{class_button_ac62cb7282f26344c8f32db72029b943b}{Width}},\ \mbox{\hyperlink{class_button_a1c1b2781143597c41a8a5b048b8935b1}{Height}},\ \mbox{\hyperlink{class_button_aaeb3ded3bef5aa582620370def52ab18}{Color}});\ \textcolor{comment}{//\ Uses\ current\ library\ for\ TFT}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_button_a5e2a90a8bb6227f5d4b3d3e7405657bcae624d226ecbc9a49890e623d33c0caf0}{Shape::Circular}}:}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_button_a6dc32269d45e7d836812edaea9b616cc}{container}}-\/>\mbox{\hyperlink{class_container_a2fe9ebaed159c6782fab5c758cb813a1}{myLCD}}-\/>fillCircle((int16\_t)(\mbox{\hyperlink{class_button_a8a68db187584de62b0fb9492560429e7}{X}}+\mbox{\hyperlink{class_button_ac62cb7282f26344c8f32db72029b943b}{Width}}/2),\ (int16\_t)(\mbox{\hyperlink{class_button_a7e9d36df60ea041070250eb303d41f0c}{Y}}+\mbox{\hyperlink{class_button_a1c1b2781143597c41a8a5b048b8935b1}{Height}}/2),\ (int16\_t)\mbox{\hyperlink{class_button_ac62cb7282f26344c8f32db72029b943b}{Width}}/2,\ (int16\_t)\mbox{\hyperlink{class_button_a1c1b2781143597c41a8a5b048b8935b1}{Height}}/2);}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_button_a6dc32269d45e7d836812edaea9b616cc}{container}}-\/>\mbox{\hyperlink{class_container_a2fe9ebaed159c6782fab5c758cb813a1}{myLCD}}-\/>fillRect(\mbox{\hyperlink{class_button_a8a68db187584de62b0fb9492560429e7}{X}},\ \mbox{\hyperlink{class_button_a7e9d36df60ea041070250eb303d41f0c}{Y}},\ \mbox{\hyperlink{class_button_ac62cb7282f26344c8f32db72029b943b}{Width}},\ \mbox{\hyperlink{class_button_a1c1b2781143597c41a8a5b048b8935b1}{Height}},\ \mbox{\hyperlink{class_button_aaeb3ded3bef5aa582620370def52ab18}{Color}});\ \textcolor{comment}{//\ Uses\ current\ library\ for\ TFT}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculates\ center-\/aligned\ text\ cursor\ position}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cursor\ X}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ int16\_t\ cursorX\ =\ (int16\_t)\mbox{\hyperlink{class_button_a8a68db187584de62b0fb9492560429e7}{X}};\ \textcolor{comment}{//\ Center-\/aligned\ text\ cursor\ X}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tries\ to\ align\ to\ center\ the\ text,\ textSize\ in\ pixel\ is\ calculated\ by\ multipying\ by\ 10\ textSize.\ If\ textSize\ is\ bigger\ than\ width,\ cursorX\ will\ be\ equal\ to\ X\ to\ maximize\ space\ available}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_button_a65b7255334c9472a20115482ce497400}{textSize}}\ *\ 10\ *\ (\mbox{\hyperlink{class_button_ad5e050ee5c49a42732628fd8888c131c}{text}}.length()\ -\/\ 2)\ <=\ \mbox{\hyperlink{class_button_ac62cb7282f26344c8f32db72029b943b}{Width}})\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ cursorX\ =\ (int16\_t)(\mbox{\hyperlink{class_button_a8a68db187584de62b0fb9492560429e7}{X}}\ +\ (\mbox{\hyperlink{class_button_ac62cb7282f26344c8f32db72029b943b}{Width}}\ -\/\ \mbox{\hyperlink{class_button_a65b7255334c9472a20115482ce497400}{textSize}}\ *\ 10\ *\ (\mbox{\hyperlink{class_button_ad5e050ee5c49a42732628fd8888c131c}{text}}.length()\ -\/\ 2))\ /\ 2);}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cursor\ Y}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ int16\_t\ cursorY\ =\ (int16\_t)(\mbox{\hyperlink{class_button_a7e9d36df60ea041070250eb303d41f0c}{Y}}\ +\ (\mbox{\hyperlink{class_button_a1c1b2781143597c41a8a5b048b8935b1}{Height}}/2)\ -\/\ \mbox{\hyperlink{class_button_a65b7255334c9472a20115482ce497400}{textSize}}\ *\ 10\ /\ 2);\ \textcolor{comment}{//\ Center-\/aligned\ text\ cursor\ Y}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sets\ text\ properties}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_button_a6dc32269d45e7d836812edaea9b616cc}{container}}-\/>\mbox{\hyperlink{class_container_a2fe9ebaed159c6782fab5c758cb813a1}{myLCD}}-\/>setTextColor(\mbox{\hyperlink{class_button_a8be03ea0788bba9df2769be9ffd12dd9}{textColor}});}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_button_a6dc32269d45e7d836812edaea9b616cc}{container}}-\/>\mbox{\hyperlink{class_container_a2fe9ebaed159c6782fab5c758cb813a1}{myLCD}}-\/>setTextSize(\mbox{\hyperlink{class_button_a65b7255334c9472a20115482ce497400}{textSize}});}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_button_a6dc32269d45e7d836812edaea9b616cc}{container}}-\/>\mbox{\hyperlink{class_container_a2fe9ebaed159c6782fab5c758cb813a1}{myLCD}}-\/>setCursor(cursorX,\ cursorY);}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prints\ button\ text}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_button_a6dc32269d45e7d836812edaea9b616cc}{container}}-\/>\mbox{\hyperlink{class_container_a2fe9ebaed159c6782fab5c758cb813a1}{myLCD}}-\/>println(\mbox{\hyperlink{class_button_ad5e050ee5c49a42732628fd8888c131c}{text}});}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00123}00123\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00125}00125\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00127}\mbox{\hyperlink{class_button_ac9fdcae010e5072366ab0e11ded0ca33}{00127}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_ac9fdcae010e5072366ab0e11ded0ca33}{Button::tick}}()\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00128}00128\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00129}00129\ \ \ \ \ \mbox{\hyperlink{class_button_a697a17ecbf99df5d68812a9603dfcbc2}{checkClick}}();}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00130}00130\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00132}\mbox{\hyperlink{class_button_a697a17ecbf99df5d68812a9603dfcbc2}{00132}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a697a17ecbf99df5d68812a9603dfcbc2}{Button::checkClick}}()\ }
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00133}00133\ \{}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00134}00134\ \ \ \ \ \textcolor{comment}{//\ Check\ click\ logic\ to\ be\ added}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00135}00135\ \}}
+\DoxyCodeLine{\Hypertarget{_button_8cpp_source_l00136}00136\ }
+
+\end{DoxyCode}

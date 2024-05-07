@@ -1,0 +1,8 @@
+#line 1 "C:\\Users\\emanu\\OneDrive\\Documenti\\CamplusProgettoLibreriaTFTDebug1\\CamplusUI-TFT-Documentato\\.vscode\\arduino.json"
+{
+    "configuration": "cpu=atmega2560",
+    "board": "arduino:avr:mega",
+    "programmer": "avrisp",
+    "sketch": "CamplusUI-TFT-Documentato.ino",
+    "output": "C://Users//emanu//OneDrive//Documenti//CamplusProgettoLibreriaTFTDebug1//CamplusUI-TFT-Documentato//build"
+}
