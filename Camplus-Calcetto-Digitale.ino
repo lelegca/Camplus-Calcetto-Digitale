@@ -53,6 +53,18 @@ float tensioneLettaBlu;
 int valoreLetturaBlu;
 int giPassataBlu=0;
 
+float tensSogliaButton=1; // Tensione di soglia per il bottone
+
+// Bottone squadra blu
+const int pinAnalogicoBluButton= A14;  // Definisci il pin analogico da cui leggere la tensione
+float tensioneLettaBluButton;
+int valoreLetturaBluButton;
+
+// Bottone squadra rossa
+const int pinAnalogicoRedButton = A15;  // Definisci il pin analogico da cui leggere la tensione
+float tensioneLettaRedButton;
+int valoreLetturaRedButton;
+
 Button rosso, blu;
 LargeEvent render;
 Container mainContainer(&myLCD, &render);
@@ -135,9 +147,18 @@ void loop() {
   valoreLetturaBlu = analogRead(pinAnalogicoBlu);  // Leggi il valore analogico dal pin
   tensioneLettaBlu = (valoreLetturaBlu * tensioneRiferimento) / risoluzioneADC;  // Converti il valore letto in volt
 
-  //Serial.print("Tensione letta rosso: " + tensioneLettaRosso + " | Tensione letta blu: " + tensioneLettaBlu);  // Stampa il messaggio di debug
+  //Ottieni dati dal bottone
+  valoreLetturaBluButton = analogRead(pinAnalogicoBluButton);  // Leggi il valore analogico dal pin
+  //Serial.print(valoreLetturaBluButton);
+  tensioneLettaBluButton = (valoreLetturaBluButton * tensioneRiferimento) / risoluzioneADC;  // Converti il valore letto in volt
+  
 
-  // Controlla un passaggio per il sensore rosso
+  valoreLetturaRedButton = analogRead(pinAnalogicoRedButton);  // Leggi il valore analogico dal pin
+  tensioneLettaRedButton = (valoreLetturaRedButton * tensioneRiferimento) / risoluzioneADC;  // Converti il valore letto in volt
+  //Serial.print("Tensione letta rosso: " + tensioneLettaRosso + " | Tensione letta blu: " + tensioneLettaBlu);  // Stampa il messaggio di debug
+  //Serial.print(tensioneLettaRedButton);
+
+  //Controlla un passaggio per il sensore rosso
   if(tensioneLettaRosso>tensBaseRosso+0.5&& giPassataRosso==0) {
     //Serial.print("----->passata rosso\n"); // Stampa il messaggio di debug
     goalRosso++; // Da incrementare in base a chi segna
@@ -148,7 +169,7 @@ void loop() {
     giPassataRosso=0;
   }
 
-  // Controlla un passaggio per il sensore blu
+  // // Controlla un passaggio per il sensore blu
   if(tensioneLettaBlu>tensBaseBlu+0.5&& giPassataBlu==0) {
     //Serial.print("----->passata blu\n"); // Stampa il messaggio di debug
     goalBlu++; // Da incrementare in base a chi segna
@@ -157,6 +178,20 @@ void loop() {
     delay(2000);
   } else {
     giPassataBlu=0;
+  }
+  //Controlla un passaggio per il bottone blu
+  if(tensioneLettaBluButton<tensSogliaButton) {
+    //Serial.print("----->premuto blu\n"); // Stampa il messaggio di debug
+    goalBlu++; // Da incrementare in base a chi segna
+    goalEvent.raise();
+    delay(500);
+  }
+  // Controlla un passaggio per il bottone rosso
+  if(tensioneLettaRedButton<tensSogliaButton) {
+    //Serial.print("----->premuto rosso\n"); // Stampa il messaggio di debug
+    goalRosso++; // Da incrementare in base a chi segna
+    goalEvent.raise();
+    delay(500);
   }
 
 
