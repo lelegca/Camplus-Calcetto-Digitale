@@ -147,20 +147,23 @@ void loop() {
   valoreLetturaBlu = analogRead(pinAnalogicoBlu);  // Leggi il valore analogico dal pin
   tensioneLettaBlu = (valoreLetturaBlu * tensioneRiferimento) / risoluzioneADC;  // Converti il valore letto in volt
 
-  //Ottieni dati dal bottone
+  // Ottieni dati dal bottone blu
   valoreLetturaBluButton = analogRead(pinAnalogicoBluButton);  // Leggi il valore analogico dal pin
-  //Serial.print(valoreLetturaBluButton);
   tensioneLettaBluButton = (valoreLetturaBluButton * tensioneRiferimento) / risoluzioneADC;  // Converti il valore letto in volt
-  
 
+  // Ottieni dati dal bottone rosso
   valoreLetturaRedButton = analogRead(pinAnalogicoRedButton);  // Leggi il valore analogico dal pin
   tensioneLettaRedButton = (valoreLetturaRedButton * tensioneRiferimento) / risoluzioneADC;  // Converti il valore letto in volt
-  //Serial.print("Tensione letta rosso: " + tensioneLettaRosso + " | Tensione letta blu: " + tensioneLettaBlu);  // Stampa il messaggio di debug
+
+  Serial.print("Tensione letta rosso: ");
+  Serial.print(tensioneLettaRosso);
+  Serial.print(" | Tensione letta blu: ");
+  Serial.print(tensioneLettaBlu);  // Stampa il messaggio di debug
   //Serial.print(tensioneLettaRedButton);
 
-  //Controlla un passaggio per il sensore rosso
+  // Controlla un passaggio per il sensore rosso
   if(tensioneLettaRosso>tensBaseRosso+0.5&& giPassataRosso==0) {
-    //Serial.print("----->passata rosso\n"); // Stampa il messaggio di debug
+    Serial.print("----->passata rosso\n"); // Stampa il messaggio di debug
     goalRosso++; // Da incrementare in base a chi segna
     goalEvent.raise();
     giPassataRosso=1;
@@ -169,9 +172,9 @@ void loop() {
     giPassataRosso=0;
   }
 
-  // // Controlla un passaggio per il sensore blu
+  // Controlla un passaggio per il sensore blu
   if(tensioneLettaBlu>tensBaseBlu+0.5&& giPassataBlu==0) {
-    //Serial.print("----->passata blu\n"); // Stampa il messaggio di debug
+    Serial.print("----->passata blu\n"); // Stampa il messaggio di debug
     goalBlu++; // Da incrementare in base a chi segna
     goalEvent.raise();
     giPassataBlu=1;
@@ -179,7 +182,8 @@ void loop() {
   } else {
     giPassataBlu=0;
   }
-  //Controlla un passaggio per il bottone blu
+
+  // Controlla un passaggio per il bottone blu
   if(tensioneLettaBluButton<tensSogliaButton) {
     //Serial.print("----->premuto blu\n"); // Stampa il messaggio di debug
     goalBlu++; // Da incrementare in base a chi segna
