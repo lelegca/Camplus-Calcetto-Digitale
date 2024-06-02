@@ -1,3 +1,13 @@
+/*
+    ____      _          _   _          ____  _       _ _        _         ____                      _           
+  / ___|__ _| | ___ ___| |_| |_ ___   |  _ \(_) __ _(_) |_ __ _| | ___   / ___|__ _ _ __ ___  _ __ | |_   _ ___ 
+ | |   / _` | |/ __/ _ \ __| __/ _ \  | | | | |/ _` | | __/ _` | |/ _ \ | |   / _` | '_ ` _ \| '_ \| | | | / __|
+ | |__| (_| | | (_|  __/ |_| || (_) | | |_| | | (_| | | || (_| | |  __/ | |__| (_| | | | | | | |_) | | |_| \__ \
+  \____\__,_|_|\___\___|\__|\__\___/  |____/|_|\__, |_|\__\__,_|_|\___|  \____\__,_|_| |_| |_| .__/|_|\__,_|___/
+                                               |___/                                         |_|                
+
+*/
+
 #include <LCDWIKI_GUI.h>
 
 #include <LCDWIKI_KBV.h>
@@ -5,6 +15,8 @@
 #include <lcd_registers.h>
 #include <mcu_16bit_magic.h>
 #include <mcu_8bit_magic.h>
+
+#include "DFRobotDFPlayerMini.h"
  
 /***************************
 
@@ -15,6 +27,10 @@
 ****************************/
 
 /* MAIN CLASS */
+
+/* DECLARATIONS */
+
+/* PRE-COMPILATION STANDARDS */
 
 #include <Arduino.h>
 
@@ -35,6 +51,10 @@
 
 LCDWIKI_KBV myLCD(ILI9486,A3,A2,A1,A0,A4);
 
+/* CUSTOM LIBRARY SECTION */
+
+/* SENSORS */
+
 // Vartiabili comuni fotoresistenze
 const float tensioneRiferimento = 5.0;  // Tensione di riferimento dell'ADC in volt
 const int risoluzioneADC = 1023;  // Risoluzione dell'ADC
@@ -53,6 +73,9 @@ float tensioneLettaBlu;
 int valoreLetturaBlu;
 int giPassataBlu=0;
 
+
+/* BUTTONS */
+
 float tensSogliaButton=1; // Tensione di soglia per il bottone
 
 // Bottone squadra blu
@@ -65,25 +88,58 @@ const int pinAnalogicoRedButton = A15;  // Definisci il pin analogico da cui leg
 float tensioneLettaRedButton;
 int valoreLetturaRedButton;
 
+/* SPEAKERS */
+DFRobotDFPlayerMini myDFPlayer;
+
+/* DISPLAY */
 Button rosso, blu;
 LargeEvent render;
 Container mainContainer(&myLCD, &render);
-Event goalEvent;
 
+/* GOAL */
+Event goalEvent;
 int goalRosso = 0;
 int goalBlu = 0;
-
 void onGoal();
 
-// Da cancellare
-enum lati {ROSSO, BLU};
+/* METHODS */
 
-lati latoGoal;
+/* SETUP */
 
 void setup() {
-
   Serial.begin(9600);
 
+  initDisplay();
+
+  initSpeakers();
+
+  initSensors();
+
+  goalEvent.addListener(&onGoal);
+
+  myDFPlayer.volume(30);  //Set volume value. From 0 to 30
+  myDFPlayer.play(1);  //Play the first mp3 
+}
+
+/* SENSOR SECTION */
+
+void initSensors() {
+  valoreLetturaRosso = analogRead(pinAnalogicoRosso);  // Leggi il valore analogico dal pin
+  tensBaseRosso = (valoreLetturaRosso * tensioneRiferimento) / risoluzioneADC;
+  Serial.print("valore soglia: ");
+  Serial.print( tensBaseRosso);
+  Serial.print("\n");
+
+  valoreLetturaBlu = analogRead(pinAnalogicoBlu);  // Leggi il valore analogico dal pin
+  tensBaseBlu = (valoreLetturaBlu * tensioneRiferimento) / risoluzioneADC;
+  Serial.print("valore soglia: ");
+  Serial.print( tensBaseBlu);
+  Serial.print("\n");
+}
+
+/* DISPLAY SECTION */
+
+void initDisplay() {
   myLCD.Init_LCD();
   myLCD.Set_Rotation(1); // da cambiare a 1
   myLCD.Set_Text_Mode(1);
@@ -113,22 +169,90 @@ void setup() {
 
   mainContainer.render->raise();
 
-  goalEvent.addListener(&onGoal);
-
   delay(2000);
-
-  valoreLetturaRosso = analogRead(pinAnalogicoRosso);  // Leggi il valore analogico dal pin
-  tensBaseRosso = (valoreLetturaRosso * tensioneRiferimento) / risoluzioneADC;
-  Serial.print("valore soglia: ");
-  Serial.print( tensBaseRosso);
-  Serial.print("\n");
-
-  valoreLetturaBlu = analogRead(pinAnalogicoBlu);  // Leggi il valore analogico dal pin
-  tensBaseBlu = (valoreLetturaBlu * tensioneRiferimento) / risoluzioneADC;
-  Serial.print("valore soglia: ");
-  Serial.print( tensBaseBlu);
-  Serial.print("\n");
 }
+
+/* SPEAKER SECTION */
+
+/* Init */
+
+void initSpeakers() {
+  Serial1.begin(9600);
+
+  Serial.println();
+  Serial.println(F("Initializing DFPlayer ... (May take 3~5 seconds)"));
+
+  if (!myDFPlayer.begin(Serial1)) {  //Use softwareSerial to communicate with mp3.
+    Serial.println(F("Unable to begin:"));
+    Serial.println(F("1.Please recheck the connection!"));
+    Serial.println(F("2.Please insert the SD card!"));
+  }
+
+  Serial.println(F("DFPlayer Mini online."));
+}
+
+/* Methods */
+
+void printDetail(uint8_t type, int value){
+  switch (type) {
+    case TimeOut:
+      Serial.println(F("Time Out!"));
+      break;
+    case WrongStack:
+      Serial.println(F("Stack Wrong!"));
+      break;
+    case DFPlayerCardInserted:
+      Serial.println(F("Card Inserted!"));
+      break;
+    case DFPlayerCardRemoved:
+      Serial.println(F("Card Removed!"));
+      break;
+    case DFPlayerCardOnline:
+      Serial.println(F("Card Online!"));
+      break;
+    case DFPlayerPlayFinished:
+      Serial.print(F("Number:"));
+      Serial.print(value);
+      Serial.println(F(" Play Finished!"));
+      break;
+    case DFPlayerError:
+      Serial.print(F("DFPlayerError:"));
+      switch (value) {
+        case Busy:
+          Serial.println(F("Card not found"));
+          break;
+        case Sleeping:
+          Serial.println(F("Sleeping"));
+          break;
+        case SerialWrongStack:
+          Serial.println(F("Get Wrong Stack"));
+          break;
+        case CheckSumNotMatch:
+          Serial.println(F("Check Sum Not Match"));
+          break;
+        case FileIndexOut:
+          Serial.println(F("File Index Out of Bound"));
+          break;
+        case FileMismatch:
+          Serial.println(F("Cannot Find File"));
+          break;
+        case Advertise:
+          Serial.println(F("In Advertise"));
+          break;
+        default:
+          break;
+      }
+      break;
+    default:
+      break;
+  }
+}
+
+
+
+/* LOOP SECTION */
+
+/* Methods */
 
 void onGoal() {
   // A prescindere cambia e ri-renderizza entrambi
@@ -186,18 +310,22 @@ void loop() {
   // Controlla un passaggio per il bottone blu
   if(tensioneLettaBluButton<tensSogliaButton) {
     //Serial.print("----->premuto blu\n"); // Stampa il messaggio di debug
-    goalBlu++; // Da incrementare in base a chi segna
+    goalBlu--; // Da incrementare in base a chi segna
     goalEvent.raise();
     delay(500);
   }
   // Controlla un passaggio per il bottone rosso
   if(tensioneLettaRedButton<tensSogliaButton) {
     //Serial.print("----->premuto rosso\n"); // Stampa il messaggio di debug
-    goalRosso++; // Da incrementare in base a chi segna
+    goalRosso--; // Da incrementare in base a chi segna
     goalEvent.raise();
     delay(500);
   }
 
+  //Print the detail message from DFPlayer to handle different errors and states.
+  if (myDFPlayer.available()) {
+    printDetail(myDFPlayer.readType(), myDFPlayer.read());
+  }
 
   // Chiude il print dell'attuale loop con un \n per passare al prossimo
   Serial.print("\n");
