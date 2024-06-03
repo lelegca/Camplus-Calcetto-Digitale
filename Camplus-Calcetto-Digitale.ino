@@ -16,15 +16,15 @@
 #include <mcu_16bit_magic.h>
 #include <mcu_8bit_magic.h>
 
-#include "DFRobotDFPlayerMini.h"
+#include <DFRobotDFPlayerMini.h>
  
-/***************************
+/***************************************
 
     CAMPLUS TORINO BERNINI
-    CamplusUI-TFT
-    All rights reserved
+    Calcetto Digitale Camplus
+    Academic Free License 3.0 (AFL-3.0)
 
-****************************/
+****************************************/
 
 /* MAIN CLASS */
 
@@ -51,7 +51,24 @@
 
 LCDWIKI_KBV myLCD(ILI9486,A3,A2,A1,A0,A4);
 
+// Audio Numbers Scheme
+
+#define AUDIO_GAME_START 15
+#define AUDIO_GAME_END_1 16
+#define AUDIO_GAME_END_2 17
+#define AUDIO_GOAL_FIRST 1
+#define AUDIO_GOAL_LAST 14
+
 /* CUSTOM LIBRARY SECTION */
+
+// DEBUG MODE
+/*  
+*   0: No debugging (NOTE: External libraries and UI-TFT library debug will still be present)
+*   1: Minimal debugging
+*   2: Full debugging
+*/
+
+#define DEBUG_MODE 2 
 
 /* SENSORS */
 
@@ -90,6 +107,7 @@ int valoreLetturaRedButton;
 
 /* SPEAKERS */
 DFRobotDFPlayerMini myDFPlayer;
+bool audioAvailable = true;
 
 /* DISPLAY */
 Button rosso, blu;
@@ -101,6 +119,8 @@ Event goalEvent;
 int goalRosso = 0;
 int goalBlu = 0;
 void onGoal();
+enum TEAM {TEAM_RED, TEAM_BLUE};
+TEAM winnerTeam = TEAM_RED;
 
 /* METHODS */
 
@@ -116,6 +136,8 @@ void setup() {
   initSensors();
 
   goalEvent.addListener(&onGoal);
+
+  randomSeed(analogRead(A5));
 
   myDFPlayer.volume(30);  //Set volume value. From 0 to 30
   myDFPlayer.play(1);  //Play the first mp3 
@@ -143,10 +165,14 @@ void initDisplay() {
   myLCD.Init_LCD();
   myLCD.Set_Rotation(1); // da cambiare a 1
   myLCD.Set_Text_Mode(1);
-  myLCD.Fill_Screen(RED);
+  myLCD.Set_Text_colour(WHITE);
+  myLCD.Set_Text_Size(10);
+  myLCD.Print("Camplus", 35, 135);
+  game_GUI();
+}
 
+void game_GUI() {
   // GUI Initialization
-
   rosso.append(&mainContainer);
   rosso.setX(0);
   rosso.setY(0);
@@ -186,9 +212,14 @@ void initSpeakers() {
     Serial.println(F("Unable to begin:"));
     Serial.println(F("1.Please recheck the connection!"));
     Serial.println(F("2.Please insert the SD card!"));
+    audioAvailable = false;
   }
-
-  Serial.println(F("DFPlayer Mini online."));
+  
+  if(audioAvailable) {
+    Serial.println(F("DFPlayer Mini online."));
+  } else {
+    Serial.println("Audio will not be enabled in this game");
+  }
 }
 
 /* Methods */
@@ -229,7 +260,7 @@ void printDetail(uint8_t type, int value){
           break;
         case CheckSumNotMatch:
           Serial.println(F("Check Sum Not Match"));
-          break;
+          break;Serial.println(F("DFPlayer Mini online."));
         case FileIndexOut:
           Serial.println(F("File Index Out of Bound"));
           break;
@@ -255,11 +286,92 @@ void printDetail(uint8_t type, int value){
 /* Methods */
 
 void onGoal() {
+  if(DEBUG_MODE > 1) {
+    Serial.print("Goal Rosso: ");
+    Serial.print(goalRosso);
+    Serial.print(" | Goal Blu: ");
+    Serial.println(goalBlu);
+  }
   // A prescindere cambia e ri-renderizza entrambi
-  rosso.setText((String) goalRosso);
-  blu.setText((String) goalBlu);
+  if(goalRosso < 11 && goalBlu < 11 && !((goalRosso == 10 || goalBlu == 10) && goalRosso == goalBlu)) { // Just need to check if goalRosso is equal to 10 as there is already a control of the equality of both
+    rosso.setText((String) goalRosso);
+    blu.setText((String) goalBlu);
+    mainContainer.render->raise();
+  } else if (goalRosso == goalBlu) {
+    // DEUCE
+    rosso.setText("DEUCE");
+    blu.setText("DEUCE");
+    mainContainer.render->raise();
+  } else if (goalRosso > goalBlu + 1) {
+    // WIN RED
+    winnerTeam = TEAM_RED;
+    endGame();
+  } else if (goalBlu > goalRosso + 1) {
+    // WIN BLUE
+    winnerTeam = TEAM_BLUE;
+    endGame();
+  } else if (goalRosso > goalBlu) {
+    // ADVANTAGE RED
+    rosso.setText("AD");
+    blu.setText("");
+    mainContainer.render->raise();
+  } else if (goalBlu > goalRosso) {
+    // ADVANTAGE BLU
+    rosso.setText("");
+    blu.setText("AD");
+    mainContainer.render->raise();
+  } else if (goalRosso == 11) {
+    // WIN RED
+    winnerTeam = TEAM_RED;
+    endGame();
+  } else if (goalBlu == 11) {
+    // WIN BLUE
+    winnerTeam = TEAM_BLUE;
+    endGame();
+  } else {
+    // ERROR
+    Serial.println("[MAIN LOOP] [ERROR] Unknown game situation.");
+    Serial.print("Goal Rosso: ");
+    Serial.print(goalRosso);
+    Serial.print(" | Goal Blu: ");
+    Serial.println(goalBlu);
+  }
+}
+
+void endGame() {
+  if (winnerTeam == TEAM_RED) {
+    rosso.setText("WIN");
+    blu.setText("LOSS");
+  } else {
+    blu.setText("WIN");
+    rosso.setText("LOSS");
+  }
 
   mainContainer.render->raise();
+
+  if(audioAvailable) {
+    myDFPlayer.play(random(AUDIO_GAME_END_1, AUDIO_GAME_END_2));
+  }
+
+  // Reset
+
+  goalBlu = 0;
+  goalRosso = 0;
+
+  delay(5000);
+
+  rosso.setText("0");
+  blu.setText("0");
+
+  mainContainer.render->raise();
+}
+
+void playGoalSound() {
+  int audioNumber = random(AUDIO_GOAL_FIRST, AUDIO_GOAL_LAST);
+
+  if(audioAvailable) {
+    myDFPlayer.play(audioNumber);
+  }
 }
 
 void loop() {
@@ -273,23 +385,27 @@ void loop() {
 
   // Ottieni dati dal bottone blu
   valoreLetturaBluButton = analogRead(pinAnalogicoBluButton);  // Leggi il valore analogico dal pin
+
   tensioneLettaBluButton = (valoreLetturaBluButton * tensioneRiferimento) / risoluzioneADC;  // Converti il valore letto in volt
 
   // Ottieni dati dal bottone rosso
   valoreLetturaRedButton = analogRead(pinAnalogicoRedButton);  // Leggi il valore analogico dal pin
   tensioneLettaRedButton = (valoreLetturaRedButton * tensioneRiferimento) / risoluzioneADC;  // Converti il valore letto in volt
 
-  Serial.print("Tensione letta rosso: ");
-  Serial.print(tensioneLettaRosso);
-  Serial.print(" | Tensione letta blu: ");
-  Serial.print(tensioneLettaBlu);  // Stampa il messaggio di debug
-  //Serial.print(tensioneLettaRedButton);
+  if (DEBUG_MODE == 2) {
+    Serial.print("Tensione letta rosso: ");
+    Serial.print(tensioneLettaRosso);
+    Serial.print(" | Tensione letta blu: ");
+    Serial.print(tensioneLettaBlu);  // Stampa il messaggio di debug
+    //Serial.print(tensioneLettaRedButton);
+  }
 
   // Controlla un passaggio per il sensore rosso
   if(tensioneLettaRosso>tensBaseRosso+0.5&& giPassataRosso==0) {
-    Serial.print("----->passata rosso\n"); // Stampa il messaggio di debug
+    if(DEBUG_MODE >= 1) Serial.print("----->passata rosso\n"); // Stampa il messaggio di debug
     goalRosso++; // Da incrementare in base a chi segna
     goalEvent.raise();
+    playGoalSound();
     giPassataRosso=1;
     delay(2000);
   } else {
@@ -298,9 +414,10 @@ void loop() {
 
   // Controlla un passaggio per il sensore blu
   if(tensioneLettaBlu>tensBaseBlu+0.5&& giPassataBlu==0) {
-    Serial.print("----->passata blu\n"); // Stampa il messaggio di debug
+    if(DEBUG_MODE >= 1) Serial.print("----->passata blu\n"); // Stampa il messaggio di debug
     goalBlu++; // Da incrementare in base a chi segna
     goalEvent.raise();
+    playGoalSound();
     giPassataBlu=1;
     delay(2000);
   } else {
@@ -309,25 +426,46 @@ void loop() {
 
   // Controlla un passaggio per il bottone blu
   if(tensioneLettaBluButton<tensSogliaButton) {
-    //Serial.print("----->premuto blu\n"); // Stampa il messaggio di debug
-    goalBlu--; // Da incrementare in base a chi segna
+    if (DEBUG_MODE >= 1) Serial.print("----->premuto blu\n"); // Stampa il messaggio di debug
+    if(goalBlu != 0) goalBlu--; // Da incrementare in base a chi segna
     goalEvent.raise();
     delay(500);
   }
   // Controlla un passaggio per il bottone rosso
   if(tensioneLettaRedButton<tensSogliaButton) {
-    //Serial.print("----->premuto rosso\n"); // Stampa il messaggio di debug
-    goalRosso--; // Da incrementare in base a chi segna
+    if (DEBUG_MODE >= 1) Serial.print("----->premuto rosso\n"); // Stampa il messaggio di debug
+    if(goalRosso != 0) goalRosso--; // Da incrementare in base a chi segna
     goalEvent.raise();
     delay(500);
   }
 
   //Print the detail message from DFPlayer to handle different errors and states.
-  if (myDFPlayer.available()) {
-    printDetail(myDFPlayer.readType(), myDFPlayer.read());
+  if (DEBUG_MODE == 1) {
+    if (audioAvailable) {
+      if (myDFPlayer.available()) {
+        printDetail(myDFPlayer.readType(), myDFPlayer.read());
+      }
+    }
   }
+  
+  //simulaPartita(); // Simula una partita per motivi di debugging. De-commentare per procedere!
 
   // Chiude il print dell'attuale loop con un \n per passare al prossimo
   Serial.print("\n");
+}
 
+void simulaPartita() {
+  delay(1000);
+  goalBlu++; // Da incrementare in base a chi segna
+  goalEvent.raise();
+  if(goalRosso == 15) {
+    goalRosso++;
+    goalEvent.raise();
+    delay(1000);
+    goalRosso++;
+    goalEvent.raise();
+  }
+  delay(1000);
+  goalRosso++;
+  goalEvent.raise();
 }
