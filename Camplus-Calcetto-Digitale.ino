@@ -68,7 +68,7 @@ LCDWIKI_KBV myLCD(ILI9486,A3,A2,A1,A0,A4);
 *   2: Full debugging
 */
 
-#define DEBUG_MODE 2 
+#define DEBUG_MODE 2
 
 /* SENSORS */
 
@@ -140,7 +140,7 @@ void setup() {
   randomSeed(analogRead(A5));
 
   myDFPlayer.volume(30);  //Set volume value. From 0 to 30
-  myDFPlayer.play(1);  //Play the first mp3 
+  myDFPlayer.play(AUDIO_GAME_START);  //Play the first mp3 
 }
 
 /* SENSOR SECTION */
@@ -173,25 +173,25 @@ void initDisplay() {
 
 void game_GUI() {
   // GUI Initialization
-  rosso.append(&mainContainer);
-  rosso.setX(0);
-  rosso.setY(0);
-  rosso.setWidth(240);
-  rosso.setHeight(320);
-  rosso.setTextColor(WHITE);
-  rosso.setColor(RED);
-  rosso.setText("0");
-  rosso.setTextSize(6);
-
   blu.append(&mainContainer);
-  blu.setX(240);
+  blu.setX(0);
   blu.setY(0);
   blu.setWidth(240);
   blu.setHeight(320);
   blu.setTextColor(WHITE);
-  blu.setColor(BLUE);
+  blu.setColor(RED);
   blu.setText("0");
   blu.setTextSize(6);
+
+  rosso.append(&mainContainer);
+  rosso.setX(240);
+  rosso.setY(0);
+  rosso.setWidth(240);
+  rosso.setHeight(320);
+  rosso.setTextColor(WHITE);
+  rosso.setColor(BLUE);
+  rosso.setText("0");
+  rosso.setTextSize(6);
 
   mainContainer.render->raise();
 
@@ -397,17 +397,22 @@ void loop() {
     Serial.print(tensioneLettaRosso);
     Serial.print(" | Tensione letta blu: ");
     Serial.print(tensioneLettaBlu);  // Stampa il messaggio di debug
-    //Serial.print(tensioneLettaRedButton);
+    Serial.print(tensioneLettaRedButton);
   }
 
   // Controlla un passaggio per il sensore rosso
   if(tensioneLettaRosso>tensBaseRosso+0.5&& giPassataRosso==0) {
-    if(DEBUG_MODE >= 1) Serial.print("----->passata rosso\n"); // Stampa il messaggio di debug
-    goalRosso++; // Da incrementare in base a chi segna
-    goalEvent.raise();
-    playGoalSound();
-    giPassataRosso=1;
-    delay(2000);
+    
+      if(DEBUG_MODE >= 1) Serial.print("----->passata rosso\n"); // Stampa il messaggio di debug
+      goalRosso++; // Da incrementare in base a chi segna
+      goalEvent.raise();
+      if(!((goalRosso>10 && (goalRosso-goalBlu) > 1) || (goalBlu>10 && (goalBlu-goalRosso) > 1)) && !(goalBlu==0 &&goalRosso==0)) {
+        playGoalSound();
+      }
+        
+      giPassataRosso=1;
+      delay(2000);
+    
   } else {
     giPassataRosso=0;
   }
@@ -417,7 +422,9 @@ void loop() {
     if(DEBUG_MODE >= 1) Serial.print("----->passata blu\n"); // Stampa il messaggio di debug
     goalBlu++; // Da incrementare in base a chi segna
     goalEvent.raise();
-    playGoalSound();
+    if((!((goalRosso>10 && (goalRosso-goalBlu) > 1) || (goalBlu>10 && (goalBlu-goalRosso)>1))) && !(goalBlu==0 &&goalRosso==0)) {
+      playGoalSound();
+    }
     giPassataBlu=1;
     delay(2000);
   } else {
@@ -427,16 +434,20 @@ void loop() {
   // Controlla un passaggio per il bottone blu
   if(tensioneLettaBluButton<tensSogliaButton) {
     if (DEBUG_MODE >= 1) Serial.print("----->premuto blu\n"); // Stampa il messaggio di debug
-    if(goalBlu != 0) goalBlu--; // Da incrementare in base a chi segna
-    goalEvent.raise();
-    delay(500);
+    if(goalBlu != 0) {
+      goalBlu--; // Da incrementare in base a chi segna
+      goalEvent.raise();
+      delay(500);
+    }
   }
   // Controlla un passaggio per il bottone rosso
   if(tensioneLettaRedButton<tensSogliaButton) {
     if (DEBUG_MODE >= 1) Serial.print("----->premuto rosso\n"); // Stampa il messaggio di debug
-    if(goalRosso != 0) goalRosso--; // Da incrementare in base a chi segna
-    goalEvent.raise();
-    delay(500);
+    if(goalRosso != 0) {
+      goalRosso--; // Da incrementare in base a chi segna
+      goalEvent.raise();
+      delay(500);
+    }
   }
 
   //Print the detail message from DFPlayer to handle different errors and states.
